@@ -9,9 +9,13 @@
 import UIKit
 
 class ListTableViewController: UITableViewController {
+    
+    let exampleArray = ["John, Donna, Mike, April, Tom"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -19,28 +23,67 @@ class ListTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if let destinationVC = segue.destination as? ListRandomViewController {
+            
+            destinationVC.randomArray = exampleArray
+            
+            func convertToArray() {
+                destinationVC.randomArray = {
+                    let textInputResult = exampleArray[0]
+                    let array = textInputResult
+                        .filter{!String($0)
+                            .contains(" ")}
+                        .components(separatedBy: ",")
+                        .compactMap{String($0)}
+                    return array
+                }()
+            }
+            
+            convertToArray()
+        }
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return exampleArray.count + 1
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath)
-
-        // Configure the cell...
+        
+        if indexPath.row < exampleArray.count{
+            cell.textLabel?.text = exampleArray[indexPath.row]
+            cell.textLabel?.numberOfLines = 0
+            cell.accessoryType = .none
+        } else {
+            cell.textLabel?.text = "Create New List"
+            cell.textLabel?.textColor = UIColor.systemBlue
+            cell.accessoryType = .disclosureIndicator
+        }
 
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == exampleArray.count {
+            performSegue(withIdentifier: "createList", sender: self)
+        } else {
+            performSegue(withIdentifier: "listRandom", sender: self)
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.

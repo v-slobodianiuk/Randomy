@@ -28,6 +28,10 @@ class DiceViewController: UIViewController {
         }
     }
     
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        makerandom()
+    }
+    
     @IBAction func stepper(_ sender: UIStepper) {
         stepperLabel.text = String(format: "%.0f", sender.value)
 
@@ -39,15 +43,14 @@ class DiceViewController: UIViewController {
         }
     }
 
-    @IBAction func diceButton(_ sender: UIButton) {
-
+    fileprivate func makerandom() {
         var timerTime = 0.0
-
+        
         firstDiceImageView.alpha = 0.0
         secondDiceImageView.alpha = 0.0
         
         for _ in 1...5 {
-
+            
             Timer.scheduledTimer(withTimeInterval: timerTime, repeats: false) {_ in
                 DispatchQueue.main.async {
                     UIView.animate(withDuration: 1.0) {
@@ -60,5 +63,10 @@ class DiceViewController: UIViewController {
             }
             timerTime += 0.2
         }
+    }
+    
+    @IBAction func diceButton(_ sender: UIButton) {
+
+        makerandom()
     }
 }

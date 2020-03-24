@@ -10,30 +10,62 @@ import UIKit
 
 class ListTableViewController: UITableViewController {
     
-    let exampleArray = ["John, Donna, Mike, April, Tom"]
+    //var exampleArray = ["John, Donna, Mike, April, Tom"]
+    var itemArray = [DataModel] ()
+    var currentRow = 0
+    
+    let dataFilePAth = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("list_of_words.plist")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        print("viewDidLoad")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
+        //let archiveURL = documentsDirectory.appendingPathComponent("list_of_words").appendingPathExtension("plist")
+        
+        loadItems()
+        
+        tableView.reloadData()
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        tableView.reloadData()
+//        print("viewWillAppear")
+//        print(itemArray)
+//    }
+//
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        print("viewDidAppear")
+//        print(itemArray)
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        
         if let destinationVC = segue.destination as? ListRandomViewController {
+
+            //destinationVC.randomArray = exampleArray
             
-            destinationVC.randomArray = exampleArray
             
+            //destinationVC.randomArray = itemArray
+//            for item in itemArray {
+//                if let str = item as? String {
+//                    print(str)
+//                }
+//            }
+            
+
             func convertToArray() {
                 destinationVC.randomArray = {
-                    let textInputResult = exampleArray[0]
+                    let textInputResult = itemArray[currentRow].text
                     let array = textInputResult
                         .filter{!String($0)
                             .contains(" ")}
@@ -42,8 +74,21 @@ class ListTableViewController: UITableViewController {
                     return array
                 }()
             }
-            
+
             convertToArray()
+        }
+    }
+    
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePAth) {
+            let decoder = PropertyListDecoder()
+            
+            do {
+                itemArray = try decoder.decode([DataModel].self, from: data)
+            } catch {
+                print("Error decoding items in array, \(error)")
+            }
+            
         }
     }
 
@@ -56,14 +101,14 @@ class ListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return exampleArray.count + 1
+        return itemArray.count + 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath)
         
-        if indexPath.row < exampleArray.count{
-            cell.textLabel?.text = exampleArray[indexPath.row]
+        if indexPath.row < itemArray.count{
+            cell.textLabel?.text = itemArray[indexPath.row].text
             cell.textLabel?.numberOfLines = 0
             cell.accessoryType = .none
         } else {
@@ -76,7 +121,10 @@ class ListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == exampleArray.count {
+        
+        currentRow = indexPath.row
+        
+        if indexPath.row == itemArray.count {
             performSegue(withIdentifier: "createList", sender: self)
         } else {
             performSegue(withIdentifier: "listRandom", sender: self)

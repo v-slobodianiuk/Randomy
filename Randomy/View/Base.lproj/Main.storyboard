@@ -168,27 +168,44 @@
         <!--Create List View Controller-->
         <scene sceneID="HIK-fG-uBq">
             <objects>
-                <viewController id="7gU-1H-nt9" customClass="CreateListViewController" customModule="Randomy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="7gU-1H-nt9" customClass="CreateListViewController" customModule="Randomy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gdR-sw-Sbf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="John, Donna, Mike, April, Tom" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Id3-76-yzt">
-                                <rect key="frame" x="20" y="44" width="374" height="764"/>
+                                <rect key="frame" x="20" y="116" width="374" height="692"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R2o-Mx-Mbx">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Новый список" id="Pg1-ZB-jmV">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="79c-JG-Rah">
+                                            <connections>
+                                                <action selector="saveButton:" destination="7gU-1H-nt9" id="Q4L-mr-1Di"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="L2L-EV-Mpc"/>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="Id3-76-yzt" id="bP2-Lj-GxO"/>
+                        <segue destination="Bhp-gY-WCm" kind="presentation" identifier="backToList" modalPresentationStyle="fullScreen" id="Nh0-HA-oV0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dhe-Ki-lHh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2088" y="-973"/>
+            <point key="canvasLocation" x="2086.9565217391305" y="-976.33928571428567"/>
         </scene>
         <!--List Random View Controller-->
         <scene sceneID="eeZ-4p-u8s">
@@ -317,4 +334,7 @@
         <image name="list.dash" catalog="system" width="64" height="42"/>
         <image name="number" catalog="system" width="64" height="62"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Nh0-HA-oV0"/>
+    </inferredMetricsTieBreakers>
 </document>

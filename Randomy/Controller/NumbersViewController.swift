@@ -22,6 +22,7 @@ class NumbersViewController: UIViewController {
         super.viewDidLoad()
         
         minTextField.delegate = self
+        maxTextField.delegate = self
         
         randomLabel.text = "0"
         minTextField.text = "0"

@@ -11,4 +11,3 @@ import Foundation
 struct DataModel: Codable {
     var text: String = ""
 }
-

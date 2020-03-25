@@ -11,9 +11,9 @@ import UIKit
 class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+
+    var data = Query()
     
-    let dataFilePAth = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("list_of_words.plist")
-    var itemArray = [DataModel] ()
     var currentRow = 0
     
     override func viewDidLoad() {
@@ -23,21 +23,8 @@ class ListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        loadItems()
+        data.loadItems()
         tableView.reloadData()
-    }
-    
-    func loadItems() {
-        if let data = try? Data(contentsOf: dataFilePAth) {
-            let decoder = PropertyListDecoder()
-            
-            do {
-                itemArray = try decoder.decode([DataModel].self, from: data)
-            } catch {
-                print("Error decoding items in array, \(error)")
-            }
-            
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -45,7 +32,7 @@ class ListViewController: UIViewController {
             
             func convertToArray() {
                 destinationVC.randomArray = {
-                    let textInputResult = itemArray[currentRow].text
+                    let textInputResult = data.array[currentRow].text
                     let array = textInputResult
                         .filter{!String($0)
                             .contains(" ")}
@@ -71,13 +58,13 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        itemArray.count
+        return data.array.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath)
         
-        cell.textLabel?.text = itemArray[indexPath.row].text
+        cell.textLabel?.text = data.array[indexPath.row].text
         cell.textLabel?.numberOfLines = 0
         
         return cell
@@ -94,10 +81,10 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-extension ListViewController: SaveDataDelegate {
-    func dataSaved() {
+extension ListViewController: QueryDataDelegate {
+    func reloadItems() {
         DispatchQueue.main.async {
-            self.loadItems()
+            self.data.loadItems()
             self.tableView.reloadData()
         }
     }

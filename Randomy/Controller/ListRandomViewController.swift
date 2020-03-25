@@ -12,32 +12,32 @@ class ListRandomViewController: UIViewController {
     
     @IBOutlet weak var randomNameLabel: UILabel!
     
-    var randomArray = [String] ()
+    private var arrayModel = ArrayModel()
+    
+    var words: String? {
+        didSet {
+            arrayModel.convertToArray(words)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
     }
-    
+        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        randomNameLabel.text = randomArray.randomElement()
+        randomNameLabel.text = arrayModel.array.randomElement()
     }
 
     @IBAction func RandomNameButton(_ sender: UIButton) {
-        
-        var timerTime = 0.0
-        
-        for _ in 1...10 {
-            Timer.scheduledTimer(withTimeInterval: timerTime, repeats: false) {_ in
-                self.randomNameLabel.alpha = 0.0
-                    UIView.animate(withDuration: 0.5) {
-                        self.randomNameLabel.text = self.randomArray.randomElement()
-                        self.randomNameLabel.alpha = 1.0
-                    }
+        Random.shared.getNewValue(repeats: 10, timeInterval: 0.3) {
+            self.randomNameLabel.alpha = 0.0
+            UIView.animate(withDuration: 0.5) {
+                self.randomNameLabel.text = self.arrayModel.array.randomElement()
+                self.randomNameLabel.alpha = 1.0
             }
-            timerTime += 0.3
         }
     }
 }

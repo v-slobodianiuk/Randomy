@@ -13,12 +13,11 @@ class CreateListViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     
     var delegate: QueryDataDelegate?
-    var data = Query()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        data.loadItems()
+        Query.shared.loadItems()
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
@@ -28,14 +27,13 @@ class CreateListViewController: UIViewController {
 
         var newItem = DataModel()
         newItem.text = textView.text
-        data.array.append(newItem)
-        data.saveItems()
+        Query.shared.array.append(newItem)
+        Query.shared.saveItems()
         
         delegate?.reloadItems()
         
         dismiss(animated: true, completion: nil)
     }
-    
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)

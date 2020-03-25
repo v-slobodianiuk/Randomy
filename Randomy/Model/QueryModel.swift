@@ -14,6 +14,8 @@ protocol QueryDataDelegate {
 
 struct Query {
     
+    private init() {}
+    static var shared = Query()
     var array = [DataModel] ()
     
     private let dataFilePAth = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("list_of_words.plist")

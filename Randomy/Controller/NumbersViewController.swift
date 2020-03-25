@@ -16,7 +16,7 @@ class NumbersViewController: UIViewController {
     @IBOutlet weak var repeatSwitch: UISwitch!
     @IBOutlet weak var randomButton: UIButton!
     
-    lazy var lastRandom = "0"
+    private lazy var lastRandom = "0"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,56 @@ class NumbersViewController: UIViewController {
         minTextField.text = "0"
         maxTextField.text = "10"
         
+        keyboardSettings()
+    }
+    
+    @IBAction func randomButton(_ sender: UIButton) {
+        makeRandom()
+    }
+    
+    private func makeRandom() {
+        if !repeatSwitch.isOn {
+            
+            let repeats = 10
+            let interval = 0.1
+            let aditionalTime = Double(repeats) * interval
+            
+            Random.shared.getNewValue(repeats: repeats, timeInterval: interval) {
+                self.formatLabel(from: 0.5, to: 0.8, duration: 0.2)
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + aditionalTime) {
+                self.lastRandom = self.randomLabel.text!
+            }
+        }
+        
+        if repeatSwitch.isOn {
+            while (randomLabel.text! == lastRandom) {
+                self.formatLabel(from: 0.0, to: 0.8, duration: 1.0)
+            }
+            lastRandom = randomLabel.text!
+        }
+    }
+    
+    private func formatLabel(from initial: CGFloat, to final: CGFloat, duration: Double) {
+        let min = Double(minTextField.text!)!
+        let max = Double(maxTextField.text!)!
+        
+        guard max > min else { return }
+        
+        self.randomLabel.alpha = initial
+        let randomDouble = Double.random(in: min...max)
+        if let _ = Int(self.maxTextField.text!), let _ = Int(self.minTextField.text!) {
+            self.randomLabel.text = String(format: "%.0f", randomDouble)
+        } else {
+            self.randomLabel.text = String(format: "%.1f", randomDouble)
+        }
+        UIView.animate(withDuration: duration) {
+            self.randomLabel.alpha = final
+        }
+    }
+    
+    private func keyboardSettings() {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
         
@@ -41,64 +91,8 @@ class NumbersViewController: UIViewController {
         }
         
         // MARK: - Возвращаем поле ввода на исходную во время скрытия клавиатуры
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { (Notification) in
-            
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { _ in
             self.view.frame.origin.y = 0
-        }
-    }
-    
-    @IBAction func randomButton(_ sender: UIButton) {
-        
-        let min = Double(minTextField.text!)!
-        let max = Double(maxTextField.text!)!
-        
-        var randomDouble = Double(0)
-        var timerTime = 0.0
-        
-        if !repeatSwitch.isOn {
-            for _ in 1...10 {
-                Timer.scheduledTimer(withTimeInterval: timerTime, repeats: false) {_ in
-                    self.randomLabel.alpha = 0.5
-                    randomDouble = Double.random(in: min...max)
-                    if let _ = Int(self.maxTextField.text!), let _ = Int(self.minTextField.text!) {
-                        UIView.animate(withDuration: 0.2) {
-                            
-                            self.randomLabel.text = String(format: "%.0f", randomDouble)
-                            self.randomLabel.alpha = 0.8
-                        }
-                        
-                    } else {
-                        self.randomLabel.text = String(format: "%.1f", randomDouble)
-                    }
-                }
-                timerTime += 0.1
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + timerTime) {
-                self.lastRandom = self.randomLabel.text!
-                print(self.lastRandom)
-            }
-
-        } else {
-            while (randomLabel.text! == lastRandom) {
-                    self.randomLabel.alpha = 0.0
-                    randomDouble = Double.random(in: min...max)
-                    if let _ = Int(self.maxTextField.text!), let _ = Int(self.minTextField.text!) {
-                        UIView.animate(withDuration: 1.0) {
-                            
-                            self.randomLabel.text = String(format: "%.0f", randomDouble)
-                            self.randomLabel.alpha = 0.8
-                        }
-                    } else {
-                        UIView.animate(withDuration: 1.0) {
-                            self.randomLabel.text = String(format: "%.1f", randomDouble)
-                            self.randomLabel.alpha = 0.8
-                        }
-                        
-                    }
-            }
-            
-            lastRandom = randomLabel.text!
         }
     }
 }
@@ -113,8 +107,5 @@ extension NumbersViewController: UITextFieldDelegate {
             textField.backgroundColor = nil
             randomButton.isHidden = false
         }
-
-
-
     }
 }

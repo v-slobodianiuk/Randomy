@@ -29,7 +29,11 @@ class DiceViewController: UIViewController {
     }
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        makerandom()
+        makeRandom()
+    }
+    
+    @IBAction func diceButton(_ sender: UIButton) {
+        makeRandom()
     }
     
     @IBAction func stepper(_ sender: UIStepper) {
@@ -42,31 +46,20 @@ class DiceViewController: UIViewController {
             secondDiceImageView.isHidden = false
         }
     }
-
-    fileprivate func makerandom() {
-        var timerTime = 0.0
-        
+    
+    func makeRandom() {
         firstDiceImageView.alpha = 0.0
         secondDiceImageView.alpha = 0.0
         
-        for _ in 1...5 {
-            
-            Timer.scheduledTimer(withTimeInterval: timerTime, repeats: false) {_ in
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: 1.0) {
-                        self.firstDiceImageView.image = self.dicesArray[Int.random(in: 0...5)]
-                        self.firstDiceImageView.alpha = 1.0
-                        self.secondDiceImageView.image = self.dicesArray[Int.random(in: 0...5)]
-                        self.secondDiceImageView.alpha = 1.0
-                    }
+        Random.shared.getNewValue(repeats: 5, timeInterval: 0.2) {
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 1.0) {
+                    self.firstDiceImageView.image = self.dicesArray[Int.random(in: 0...5)]
+                    self.firstDiceImageView.alpha = 1.0
+                    self.secondDiceImageView.image = self.dicesArray[Int.random(in: 0...5)]
+                    self.secondDiceImageView.alpha = 1.0
                 }
             }
-            timerTime += 0.2
         }
-    }
-    
-    @IBAction func diceButton(_ sender: UIButton) {
-
-        makerandom()
     }
 }

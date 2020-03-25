@@ -10,7 +10,7 @@
 		D538B6192429A6CE007E44EA /* CreateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538B6182429A6CE007E44EA /* CreateListViewController.swift */; };
 		D538B61B2429A943007E44EA /* ListRandomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538B61A2429A943007E44EA /* ListRandomViewController.swift */; };
 		D538B61D242A236F007E44EA /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538B61C242A236F007E44EA /* DataModel.swift */; };
-		D592E6C02428EEC100C7A299 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D592E6BF2428EEC100C7A299 /* ListTableViewController.swift */; };
+		D55AD673242AC38D001EECA4 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55AD672242AC38D001EECA4 /* ListViewController.swift */; };
 		D592E6C22428EEF000C7A299 /* DiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D592E6C12428EEF000C7A299 /* DiceViewController.swift */; };
 		D5EEBC102428E3CE001C49A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEBC0F2428E3CE001C49A7 /* AppDelegate.swift */; };
 		D5EEBC122428E3CE001C49A7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEBC112428E3CE001C49A7 /* SceneDelegate.swift */; };
@@ -35,7 +35,7 @@
 		D538B6182429A6CE007E44EA /* CreateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateListViewController.swift; sourceTree = "<group>"; };
 		D538B61A2429A943007E44EA /* ListRandomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRandomViewController.swift; sourceTree = "<group>"; };
 		D538B61C242A236F007E44EA /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		D592E6BF2428EEC100C7A299 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
+		D55AD672242AC38D001EECA4 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		D592E6C12428EEF000C7A299 /* DiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceViewController.swift; sourceTree = "<group>"; };
 		D5EEBC0C2428E3CE001C49A7 /* Randomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Randomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5EEBC0F2428E3CE001C49A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 		D592E6BD2428ED8300C7A299 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D592E6BF2428EEC100C7A299 /* ListTableViewController.swift */,
+				D55AD672242AC38D001EECA4 /* ListViewController.swift */,
 				D538B6182429A6CE007E44EA /* CreateListViewController.swift */,
 				D538B61A2429A943007E44EA /* ListRandomViewController.swift */,
 				D5EEBC132428E3CE001C49A7 /* NumbersViewController.swift */,
@@ -244,9 +244,9 @@
 				D592E6C22428EEF000C7A299 /* DiceViewController.swift in Sources */,
 				D5EEBC102428E3CE001C49A7 /* AppDelegate.swift in Sources */,
 				D538B61B2429A943007E44EA /* ListRandomViewController.swift in Sources */,
+				D55AD673242AC38D001EECA4 /* ListViewController.swift in Sources */,
 				D538B61D242A236F007E44EA /* DataModel.swift in Sources */,
 				D5EEBC122428E3CE001C49A7 /* SceneDelegate.swift in Sources */,
-				D592E6C02428EEC100C7A299 /* ListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

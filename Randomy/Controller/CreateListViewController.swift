@@ -8,12 +8,19 @@
 
 import UIKit
 
+protocol SaveDataDelegate {
+    func  dataSaved()
+}
+
 class CreateListViewController: UIViewController {
     
+    var delegate: SaveDataDelegate?
     
     @IBOutlet weak var textView: UITextView!
     
     var itemArray = [DataModel] ()
+    
+    var mainVC: ListViewController?
     
     let dataFilePAth = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("list_of_words.plist")
 
@@ -21,11 +28,11 @@ class CreateListViewController: UIViewController {
         super.viewDidLoad()
         
         loadItems()
-
+        
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
 
-        print(dataFilePAth)
+        //print(dataFilePAth)
         
     }
     
@@ -48,7 +55,6 @@ class CreateListViewController: UIViewController {
             } catch {
                 print("Error decoding items in array, \(error)")
             }
-            
         }
     }
     
@@ -59,19 +65,15 @@ class CreateListViewController: UIViewController {
         itemArray.append(newItem)
         saveItems()
         
-        performSegue(withIdentifier: "backToList", sender: self)
+        delegate?.dataSaved()
+        
+        dismiss(animated: true, completion: nil )
     }
     
     
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let destinationVC = segue.destination as? ListTableViewController {
-//
-//            destinationVC.exampleArray.append(textView.text)
-//        }
-//    }
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension CreateListViewController: UITextViewDelegate {

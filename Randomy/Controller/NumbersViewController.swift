@@ -15,11 +15,19 @@ class NumbersViewController: UIViewController {
     @IBOutlet weak var randomLabel: UILabel!
     @IBOutlet weak var repeatSwitch: UISwitch!
     @IBOutlet weak var randomButton: UIButton!
+    let gradientLayer = CAGradientLayer()
+    var gradientColors = [ #colorLiteral(red: 0.9176470588, green: 0.3294117647, blue: 0.3333333333, alpha: 1).cgColor, #colorLiteral(red: 0.9411764706, green: 0.4823529412, blue: 0.2470588235, alpha: 1).cgColor, #colorLiteral(red: 1, green: 0.831372549, blue: 0.3764705882, alpha: 1).cgColor]
     
     private lazy var lastRandom = "0"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //repeatSwitch.thumbTintColor = #colorLiteral(red: 0.1764705882, green: 0.2509803922, blue: 0.3490196078, alpha: 1)
+        
+        gradientLayer.name = "Gradient"
+        view.backgroundColor = .systemBackground
+        setGradient()
         
         minTextField.delegate = self
         maxTextField.delegate = self
@@ -30,9 +38,30 @@ class NumbersViewController: UIViewController {
         
         keyboardSettings()
     }
+
     
     @IBAction func randomButton(_ sender: UIButton) {
+        self.view.layer.opacity = 0.7
         makeRandom()
+        
+        UIView.animate(withDuration: 0.8) {
+//            self.view.layer.sublayers?
+//                .filter { $0.name == "Gradient" }
+//                .forEach { layer in
+//                    layer.removeFromSuperlayer()
+//            }
+            
+            
+        }
+
+
+    }
+    
+    func setGradient() {
+        gradientLayer.colors = [gradientColors[Int.random(in: 0...2)], gradientColors[Int.random(in: 0...2)]]
+        gradientLayer.frame = view.bounds
+        gradientLayer.shouldRasterize = true
+        view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     private func makeRandom() {
@@ -57,6 +86,13 @@ class NumbersViewController: UIViewController {
             }
             lastRandom = randomLabel.text!
         }
+        
+
+        UIView.animate(withDuration: 1.0) {
+            self.setGradient()
+            self.view.layer.opacity = 1.0
+        }
+
     }
     
     private func formatLabel(from initial: CGFloat, to final: CGFloat, duration: Double) {

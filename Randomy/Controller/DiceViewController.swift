@@ -16,7 +16,6 @@ class DiceViewController: UIViewController {
     @IBOutlet weak var stepper: UIStepper!
     
     var dicesArray = [UIImage?] ()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

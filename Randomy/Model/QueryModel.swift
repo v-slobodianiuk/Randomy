@@ -37,7 +37,6 @@ struct Query {
             
             do {
                 array = try decoder.decode([DataModel].self, from: data)
-                //print(array)
             } catch {
                 print("Error decoding items in array, \(error)")
             }

@@ -17,10 +17,24 @@ class CreateListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        textView.delegate = self
+        
+        textView.resignFirstResponder()
+        
+        textView.text = "Enter the words separated by spaces or commas.\nFor example: Tom, John, Donna, Mike"
+        
         Query.shared.loadItems()
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        textView.alpha = 0.5
+        textView.layer.cornerRadius = 10
+        textView.backgroundColor = UIColor.systemGray.withAlphaComponent(0.1)
     }
     
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
@@ -41,8 +55,23 @@ class CreateListViewController: UIViewController {
 }
 
 extension CreateListViewController: UITextViewDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textView.endEditing(true)
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        
         return true
     }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        textView.text = ""
+        textView.alpha = 1.0
+        
+        let range = NSMakeRange(textView.text.count - 1, 0)
+        textView.scrollRangeToVisible(range)
+        return true
+    }
+
 }

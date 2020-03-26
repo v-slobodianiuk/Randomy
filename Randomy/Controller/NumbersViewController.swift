@@ -15,19 +15,11 @@ class NumbersViewController: UIViewController {
     @IBOutlet weak var randomLabel: UILabel!
     @IBOutlet weak var repeatSwitch: UISwitch!
     @IBOutlet weak var randomButton: UIButton!
-    let gradientLayer = CAGradientLayer()
-    var gradientColors = [ #colorLiteral(red: 0.9176470588, green: 0.3294117647, blue: 0.3333333333, alpha: 1).cgColor, #colorLiteral(red: 0.9411764706, green: 0.4823529412, blue: 0.2470588235, alpha: 1).cgColor, #colorLiteral(red: 1, green: 0.831372549, blue: 0.3764705882, alpha: 1).cgColor]
     
     private lazy var lastRandom = "0"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //repeatSwitch.thumbTintColor = #colorLiteral(red: 0.1764705882, green: 0.2509803922, blue: 0.3490196078, alpha: 1)
-        
-        gradientLayer.name = "Gradient"
-        view.backgroundColor = .systemBackground
-        setGradient()
         
         minTextField.delegate = self
         maxTextField.delegate = self
@@ -38,41 +30,33 @@ class NumbersViewController: UIViewController {
         
         keyboardSettings()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Gradient.shared.initGradient(for: view)
+    }
     
     @IBAction func randomButton(_ sender: UIButton) {
         self.view.layer.opacity = 0.7
         makeRandom()
         
-        UIView.animate(withDuration: 0.8) {
-//            self.view.layer.sublayers?
-//                .filter { $0.name == "Gradient" }
-//                .forEach { layer in
-//                    layer.removeFromSuperlayer()
-//            }
-            
-            
+        UIView.animate(withDuration: 1.0) {
+            Gradient.shared.initGradient(for: self.view)
+            self.view.layer.opacity = 1.0
+            self.view.layer.setNeedsDisplay()
         }
-
-
-    }
-    
-    func setGradient() {
-        gradientLayer.colors = [gradientColors[Int.random(in: 0...2)], gradientColors[Int.random(in: 0...2)]]
-        gradientLayer.frame = view.bounds
-        gradientLayer.shouldRasterize = true
-        view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     private func makeRandom() {
         if !repeatSwitch.isOn {
             
-            let repeats = 10
+            let repeats = 5
             let interval = 0.1
             let aditionalTime = Double(repeats) * interval
             
             Random.shared.getNewValue(repeats: repeats, timeInterval: interval) {
-                self.formatLabel(from: 0.5, to: 0.8, duration: 0.2)
+                self.formatLabel(from: 0.5, to: 0.8, duration: 0.5)
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + aditionalTime) {
@@ -85,12 +69,6 @@ class NumbersViewController: UIViewController {
                 self.formatLabel(from: 0.0, to: 0.8, duration: 1.0)
             }
             lastRandom = randomLabel.text!
-        }
-        
-
-        UIView.animate(withDuration: 1.0) {
-            self.setGradient()
-            self.view.layer.opacity = 1.0
         }
 
     }
@@ -114,10 +92,11 @@ class NumbersViewController: UIViewController {
     }
     
     private func keyboardSettings() {
+        
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
         
-        // MARK: - Смещаем поле ввода чтобы не закрывать его клавиатурой
+        // MARK: Change View frame y position bt default when we call Keyboard
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { (Notification) in
             
             // if keyboard size is not available for some reason, dont do anything
@@ -126,7 +105,7 @@ class NumbersViewController: UIViewController {
             self.view.frame.origin.y = 0 - keyboardSize.height / 2
         }
         
-        // MARK: - Возвращаем поле ввода на исходную во время скрытия клавиатуры
+        // MARK: Set View frame y position bt default
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { _ in
             self.view.frame.origin.y = 0
         }
@@ -136,11 +115,11 @@ class NumbersViewController: UIViewController {
 extension NumbersViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text == "" {
-            textField.backgroundColor = UIColor.systemRed.withAlphaComponent(CGFloat(0.3))
-            textField.placeholder = "Введите число"
+            textField.backgroundColor = UIColor.systemBackground.withAlphaComponent(CGFloat(0.7))
+            textField.placeholder = "Input number"
             randomButton.isHidden = true
         } else {
-            textField.backgroundColor = nil
+            textField.backgroundColor = UIColor.clear
             randomButton.isHidden = false
         }
     }

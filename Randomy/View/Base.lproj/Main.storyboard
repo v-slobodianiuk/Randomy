@@ -16,6 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="xwD-k4-LbQ" kind="relationship" relationship="viewControllers" id="hRN-So-gjB"/>
@@ -61,7 +62,6 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="aZU-yh-qLu" firstAttribute="centerY" secondItem="fIB-4r-rXY" secondAttribute="centerY" id="L31-HK-Egf"/>
                                             <constraint firstItem="aZU-yh-qLu" firstAttribute="centerX" secondItem="fIB-4r-rXY" secondAttribute="centerX" id="eIQ-gn-iyn"/>
@@ -96,7 +96,6 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="YHL-mW-wnv" firstAttribute="top" secondItem="1jH-Iq-Upu" secondAttribute="bottom" constant="85" id="5oE-jG-S6N"/>
                                             <constraint firstItem="1jH-Iq-Upu" firstAttribute="centerX" secondItem="Fql-KK-dfD" secondAttribute="centerX" id="GKX-8F-InE"/>
@@ -121,7 +120,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vkR-le-wi8"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Dices" image="circle.grid.2x2" catalog="system" selectedImage="circle.grid.2x2" id="ygh-1A-T5I"/>
+                    <tabBarItem key="tabBarItem" title="Dices" image="circle.grid.2x2" catalog="system" selectedImage="circle.grid.2x2.fill" id="ygh-1A-T5I"/>
                     <connections>
                         <outlet property="firstDiceImageView" destination="BA1-ov-LGE" id="HMh-Vf-enh"/>
                         <outlet property="secondDiceImageView" destination="4js-gs-Y5T" id="WaW-HE-ZFb"/>
@@ -141,23 +140,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="John, Donna, Mike, April, Tom" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Id3-76-yzt">
-                                <rect key="frame" x="25" y="81" width="364" height="752"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nTJ-zi-7NL">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
                                     <navigationItem title="New List" id="Xcz-06-COr">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="sso-Za-EA5">
+                                            <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="cancelButton:" destination="7gU-1H-nt9" id="XAw-XR-4f9"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Pjq-Nf-wI6">
+                                            <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="saveButton:" destination="7gU-1H-nt9" id="o6a-VQ-HyQ"/>
                                             </connections>
@@ -165,15 +159,22 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="John, Donna, Mike, April, Tom" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Id3-76-yzt">
+                                <rect key="frame" x="25" y="81" width="364" height="210.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="nTJ-zi-7NL" firstAttribute="trailing" secondItem="L2L-EV-Mpc" secondAttribute="trailing" id="5aa-4X-dcg"/>
-                            <constraint firstItem="Id3-76-yzt" firstAttribute="bottom" secondItem="L2L-EV-Mpc" secondAttribute="bottom" constant="25" id="Kj9-pa-iML"/>
+                            <constraint firstItem="Id3-76-yzt" firstAttribute="height" secondItem="gdR-sw-Sbf" secondAttribute="height" multiplier="1:4" id="FOy-hE-cIT"/>
                             <constraint firstItem="nTJ-zi-7NL" firstAttribute="top" secondItem="L2L-EV-Mpc" secondAttribute="top" id="KlJ-Go-a2J"/>
-                            <constraint firstItem="L2L-EV-Mpc" firstAttribute="trailing" secondItem="Id3-76-yzt" secondAttribute="trailing" constant="25" id="bWs-Rp-wLc"/>
-                            <constraint firstItem="Id3-76-yzt" firstAttribute="leading" secondItem="L2L-EV-Mpc" secondAttribute="leading" constant="25" id="k57-sD-yho"/>
-                            <constraint firstItem="Id3-76-yzt" firstAttribute="top" secondItem="nTJ-zi-7NL" secondAttribute="bottom" constant="25" id="nHK-r2-N20"/>
+                            <constraint firstItem="Id3-76-yzt" firstAttribute="top" secondItem="nTJ-zi-7NL" secondAttribute="bottom" constant="25" id="O9v-Vq-x3d"/>
+                            <constraint firstItem="Id3-76-yzt" firstAttribute="leading" secondItem="L2L-EV-Mpc" secondAttribute="leading" constant="25" id="Pl5-ur-gmB"/>
+                            <constraint firstItem="L2L-EV-Mpc" firstAttribute="trailing" secondItem="Id3-76-yzt" secondAttribute="trailing" constant="25" id="QyQ-2Z-eLa"/>
                             <constraint firstItem="nTJ-zi-7NL" firstAttribute="leading" secondItem="L2L-EV-Mpc" secondAttribute="leading" id="p70-1J-wkf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="L2L-EV-Mpc"/>
@@ -216,6 +217,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="List" id="0sv-EZ-PYs">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="6aE-18-HwC">
+                            <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="7gU-1H-nt9" kind="presentation" identifier="addNew" id="8YC-9a-GAE"/>
                             </connections>
@@ -244,7 +246,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="GFb-us-tLh"/>
                                 </constraints>
-                                <state key="normal" title="Get Random">
+                                <state key="normal" title="Randomize">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -258,6 +260,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L9Z-Im-HMY">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem id="qdx-e5-GaV">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="ZyG-d6-hYA">
+                                            <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="cancelButton:" destination="GlE-5z-maC" id="mv1-RF-woz"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -439,6 +455,7 @@
         <image name="3" width="132" height="132"/>
         <image name="5" width="132" height="132"/>
         <image name="circle.grid.2x2" catalog="system" width="128" height="112"/>
+        <image name="circle.grid.2x2.fill" catalog="system" width="128" height="112"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="number" catalog="system" width="128" height="124"/>
     </resources>

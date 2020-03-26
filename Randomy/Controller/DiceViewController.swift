@@ -16,6 +16,7 @@ class DiceViewController: UIViewController {
     @IBOutlet weak var stepper: UIStepper!
     
     var dicesArray = [UIImage?] ()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +26,12 @@ class DiceViewController: UIViewController {
         (1...6).forEach { (img) in
             dicesArray.append(UIImage(named: "\(img)"))
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Gradient.shared.initGradient(for: view)
     }
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {

@@ -22,22 +22,29 @@ class ListRandomViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
-        
+            
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        Gradient.shared.initGradient(for: view)
         randomNameLabel.text = arrayModel.array.randomElement()
     }
-
+    
+    
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func RandomNameButton(_ sender: UIButton) {
-        Random.shared.getNewValue(repeats: 10, timeInterval: 0.3) {
-            self.randomNameLabel.alpha = 0.0
+        Random.shared.getNewValue(repeats: 5, timeInterval: 0.1) {
+            self.randomNameLabel.alpha = 0.5
             UIView.animate(withDuration: 0.5) {
                 self.randomNameLabel.text = self.arrayModel.array.randomElement()
                 self.randomNameLabel.alpha = 1.0
             }
         }
+        
+        Gradient.shared.initGradient(for: view)
     }
 }

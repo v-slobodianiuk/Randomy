@@ -18,21 +18,21 @@ struct Query {
     static var shared = Query()
     var array = [DataModel] ()
     
-    private let dataFilePAth = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("list_of_words.plist")
+    private static let dataFilePAth = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("list_of_words.plist")
     
-    func saveItems() {
+    func saveItems(url: URL? = Query.dataFilePAth) {
         let encoder = PropertyListEncoder()
         do {
             let data = try encoder.encode(array)
-            try data.write(to: dataFilePAth)
+            try data.write(to: url!)
         } catch {
             print("Error encoding item array, \(error)")
         }
     }
     
-    mutating func loadItems() {
+    mutating func loadItems(url: URL? = Query.dataFilePAth) {
         
-        if let data = try? Data(contentsOf: dataFilePAth) {
+        if let data = try? Data(contentsOf: url!) {
             let decoder = PropertyListDecoder()
             
             do {

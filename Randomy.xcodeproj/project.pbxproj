@@ -11,6 +11,9 @@
 		D538B61B2429A943007E44EA /* ListRandomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538B61A2429A943007E44EA /* ListRandomViewController.swift */; };
 		D538B61D242A236F007E44EA /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538B61C242A236F007E44EA /* DataModel.swift */; };
 		D54883B1242D337F00024E16 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54883B0242D337F00024E16 /* GradientView.swift */; };
+		D555CC9F242D603B007377F1 /* DataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D555CC9E242D603B007377F1 /* DataModelTests.swift */; };
+		D555CCA2242D6306007377F1 /* QueryModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D555CCA1242D6306007377F1 /* QueryModelTests.swift */; };
+		D555CCA4242D8D8C007377F1 /* RandomModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D555CCA3242D8D8C007377F1 /* RandomModelTests.swift */; };
 		D55AD673242AC38D001EECA4 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55AD672242AC38D001EECA4 /* ListViewController.swift */; };
 		D55AD675242AEBD9001EECA4 /* QueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55AD674242AEBD9001EECA4 /* QueryModel.swift */; };
 		D55AD677242AF77E001EECA4 /* ArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55AD676242AF77E001EECA4 /* ArrayModel.swift */; };
@@ -41,6 +44,9 @@
 		D538B61A2429A943007E44EA /* ListRandomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRandomViewController.swift; sourceTree = "<group>"; };
 		D538B61C242A236F007E44EA /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		D54883B0242D337F00024E16 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		D555CC9E242D603B007377F1 /* DataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelTests.swift; sourceTree = "<group>"; };
+		D555CCA1242D6306007377F1 /* QueryModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryModelTests.swift; sourceTree = "<group>"; };
+		D555CCA3242D8D8C007377F1 /* RandomModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomModelTests.swift; sourceTree = "<group>"; };
 		D55AD672242AC38D001EECA4 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		D55AD674242AEBD9001EECA4 /* QueryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryModel.swift; sourceTree = "<group>"; };
 		D55AD676242AF77E001EECA4 /* ArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayModel.swift; sourceTree = "<group>"; };
@@ -87,6 +93,16 @@
 				D55AD678242AFA8A001EECA4 /* Random.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D555CCA0242D603F007377F1 /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				D555CC9E242D603B007377F1 /* DataModelTests.swift */,
+				D555CCA1242D6306007377F1 /* QueryModelTests.swift */,
+				D555CCA3242D8D8C007377F1 /* RandomModelTests.swift */,
+			);
+			path = ModelTests;
 			sourceTree = "<group>";
 		};
 		D592E6BD2428ED8300C7A299 /* Controller */ = {
@@ -147,6 +163,7 @@
 		D5EEBC252428E3D0001C49A7 /* RandomyTests */ = {
 			isa = PBXGroup;
 			children = (
+				D555CCA0242D603F007377F1 /* ModelTests */,
 				D5EEBC262428E3D0001C49A7 /* RandomyTests.swift */,
 				D5EEBC282428E3D0001C49A7 /* Info.plist */,
 			);
@@ -275,6 +292,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5EEBC272428E3D0001C49A7 /* RandomyTests.swift in Sources */,
+				D555CC9F242D603B007377F1 /* DataModelTests.swift in Sources */,
+				D555CCA4242D8D8C007377F1 /* RandomModelTests.swift in Sources */,
+				D555CCA2242D6306007377F1 /* QueryModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,8 +20,20 @@ class ListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        navigationItem.leftBarButtonItem = editButtonItem
+        navigationItem.leftBarButtonItem?.tintColor = .systemOrange
+        
         Query.shared.loadItems()
         tableView.reloadData()
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing,animated:animated)
+        if (editing) {
+            tableView.isEditing = true
+        } else {
+            tableView.isEditing = false
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,6 +67,29 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         performSegue(withIdentifier: "listRandom", sender: self)
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            Query.shared.array.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            Query.shared.saveItems()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let itemToMove = Query.shared.array[sourceIndexPath.row]
+        Query.shared.array.remove(at: sourceIndexPath.row)
+        Query.shared.array.insert(itemToMove, at: destinationIndexPath.row)
+        Query.shared.saveItems()
     }
     
 }

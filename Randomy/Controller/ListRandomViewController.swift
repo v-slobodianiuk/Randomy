@@ -11,8 +11,9 @@ import UIKit
 class ListRandomViewController: UIViewController {
     
     @IBOutlet weak var randomNameLabel: UILabel!
+    @IBOutlet weak var randomNameButton: Buttons!
     
-    private var arrayModel = ArrayModel()
+    var arrayModel = ArrayModel()
     
     var words: String? {
         didSet {

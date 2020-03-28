@@ -16,7 +16,7 @@ class NumbersViewController: UIViewController {
     @IBOutlet weak var repeatSwitch: UISwitch!
     @IBOutlet weak var randomButton: UIButton!
     
-    private lazy var lastRandom = "0"
+    lazy var lastRandom = "0"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +25,8 @@ class NumbersViewController: UIViewController {
         maxTextField.delegate = self
         
         randomLabel.text = "0"
-        minTextField.text = "0"
-        maxTextField.text = "10"
+        minTextField.text = "0.0"
+        maxTextField.text = "10.0"
         
         keyboardSettings()
     }
@@ -48,7 +48,7 @@ class NumbersViewController: UIViewController {
         }
     }
     
-    private func makeRandom() {
+    func makeRandom() {
         if !repeatSwitch.isOn {
             
             let repeats = 5
@@ -73,7 +73,7 @@ class NumbersViewController: UIViewController {
 
     }
     
-    private func formatLabel(from initial: CGFloat, to final: CGFloat, duration: Double) {
+    func formatLabel(from initial: CGFloat, to final: CGFloat, duration: Double) {
         let min = Double(minTextField.text!)!
         let max = Double(maxTextField.text!)!
         
@@ -91,7 +91,7 @@ class NumbersViewController: UIViewController {
         }
     }
     
-    private func keyboardSettings() {
+    func keyboardSettings() {
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)

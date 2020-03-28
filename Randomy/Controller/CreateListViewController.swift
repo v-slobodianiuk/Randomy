@@ -11,6 +11,7 @@ import UIKit
 class CreateListViewController: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var delegate: QueryDataDelegate?
 
@@ -18,8 +19,6 @@ class CreateListViewController: UIViewController {
         super.viewDidLoad()
         
         textView.delegate = self
-        
-        textView.resignFirstResponder()
         
         textView.text = "Enter the words separated by spaces or commas.\nFor example: Tom, John, Donna, Mike"
         

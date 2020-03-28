@@ -9,7 +9,7 @@
 import XCTest
 @testable import Randomy
 
-class GradientView: XCTestCase {
+class GradientViewTests: XCTestCase {
     
     var testView: UIView?
     

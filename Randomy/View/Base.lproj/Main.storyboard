@@ -31,7 +31,7 @@
         <!--Dices-->
         <scene sceneID="3K9-AN-WTc">
             <objects>
-                <viewController id="nfW-eW-MXN" customClass="DiceViewController" customModule="Randomy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DiceVC" id="nfW-eW-MXN" customClass="DiceViewController" customModule="Randomy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o2a-nl-ynU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -181,6 +181,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add" id="bt6-E1-ZCL"/>
                     <connections>
+                        <outlet property="saveButton" destination="Pjq-Nf-wI6" id="L6g-sg-3tK"/>
                         <outlet property="textView" destination="Id3-76-yzt" id="bP2-Lj-GxO"/>
                     </connections>
                 </viewController>
@@ -191,7 +192,7 @@
         <!--List-->
         <scene sceneID="VIz-Ck-6OX">
             <objects>
-                <viewController id="YOj-lh-8t6" customClass="ListViewController" customModule="Randomy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListVC" id="YOj-lh-8t6" customClass="ListViewController" customModule="Randomy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rp6-zL-sqv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,7 +236,7 @@
         <!--List Random View Controller-->
         <scene sceneID="eeZ-4p-u8s">
             <objects>
-                <viewController id="GlE-5z-maC" customClass="ListRandomViewController" customModule="Randomy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListRandomVC" id="GlE-5z-maC" customClass="ListRandomViewController" customModule="Randomy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZAk-qh-VmZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -286,6 +287,7 @@
                         <viewLayoutGuide key="safeArea" id="A2Z-Mp-E0o"/>
                     </view>
                     <connections>
+                        <outlet property="randomNameButton" destination="wja-Vf-A0n" id="5jW-q2-kGz"/>
                         <outlet property="randomNameLabel" destination="CHx-fO-wyH" id="hLM-zX-d1z"/>
                     </connections>
                 </viewController>
@@ -296,7 +298,7 @@
         <!--Numbers-->
         <scene sceneID="Xpi-kr-WO2">
             <objects>
-                <viewController id="lDA-v6-u90" customClass="NumbersViewController" customModule="Randomy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NumbersVС" id="lDA-v6-u90" customClass="NumbersViewController" customModule="Randomy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4j4-ru-lf6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

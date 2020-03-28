@@ -12,7 +12,7 @@ class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 
-    private var currentRow: Int?
+    var currentRow: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()

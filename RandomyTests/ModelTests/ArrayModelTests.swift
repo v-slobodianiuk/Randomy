@@ -29,7 +29,7 @@ class ArrayModelTests: XCTestCase {
     
     func testConvertToArray() {
         mockArrayModel?.convertToArray(mockString)
-        XCTAssertEqual(mockArrayModel!.array, ["Baz", "Bar", "Baz", "Bar", "Baz", "Bar"])
+        XCTAssertEqual(mockArrayModel!.array.count, 6)
     }
 
 }

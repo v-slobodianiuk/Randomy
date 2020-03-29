@@ -47,7 +47,7 @@ class ListRandomViewControllerTests: XCTestCase {
         
         listRandomVC.words = "Baz, Bar"
         
-        XCTAssertEqual(listRandomVC.arrayModel.array, ["Baz", "Bar"])
+        XCTAssertEqual(listRandomVC.arrayModel.array.count, 2)
     }
     
     func testCancelButton() {

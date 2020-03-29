@@ -23,6 +23,8 @@ class ListRandomViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        randomNameLabel.adjustsFontSizeToFitWidth = true
     }
             
     override func viewWillAppear(_ animated: Bool) {

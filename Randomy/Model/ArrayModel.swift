@@ -11,17 +11,24 @@ import Foundation
 struct ArrayModel {
     
     var array = [String] ()
+    var charSet = CharacterSet(charactersIn: "/:;()&”.?![]{}#%^*+=_|~<>•\\\"")
     
     mutating func convertToArray(_ listOfWords: String?) {
         if let words = listOfWords {
             array = {
                 let array = words
-                    .filter{!String($0)
-                        .contains(" ")}
+                    .removeCharacters(from: charSet)
                     .components(separatedBy: ",")
-                    .compactMap{String($0)}
+                    .filter { $0.unicodeScalars.contains{CharacterSet.letters.contains($0)} }
                 return array
             }()
         }
+    }
+}
+
+extension String {
+    func removeCharacters(from forbiddenChars: CharacterSet) -> String {
+        let passed = self.unicodeScalars.filter { !forbiddenChars.contains($0) }
+        return String(String.UnicodeScalarView(passed))
     }
 }

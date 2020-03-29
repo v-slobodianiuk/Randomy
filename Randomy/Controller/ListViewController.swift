@@ -20,6 +20,8 @@ class ListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        //tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.leftBarButtonItem?.tintColor = .systemOrange
         
@@ -69,9 +71,9 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
         performSegue(withIdentifier: "listRandom", sender: self)
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+//        return .delete
+//    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

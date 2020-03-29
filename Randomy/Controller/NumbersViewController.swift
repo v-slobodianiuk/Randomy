@@ -25,6 +25,7 @@ class NumbersViewController: UIViewController {
         maxTextField.delegate = self
         
         randomLabel.text = "0"
+        randomLabel.adjustsFontSizeToFitWidth = true
         minTextField.text = "0.0"
         maxTextField.text = "10.0"
         

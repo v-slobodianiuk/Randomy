@@ -20,7 +20,7 @@ class CreateListViewController: UIViewController {
         
         textView.delegate = self
         
-        textView.text = "Enter the words separated by spaces or commas.\nFor example: Tom, John, Donna, Mike"
+        textView.text = "Enter the words separated by commas.\nFor example: Tom, John, Donna, Mike"
         
         Query.shared.loadItems()
         

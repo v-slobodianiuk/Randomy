@@ -140,8 +140,12 @@ extension NumbersViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         // MARK: Check if text field is empty
         if textField.text == "" {
-            textField.backgroundColor = UIColor.systemBackground.withAlphaComponent(CGFloat(0.7))
-            textField.placeholder = "Input number"
+            if #available(iOS 13.0, *) {
+                textField.backgroundColor = UIColor.systemBackground.withAlphaComponent(CGFloat(0.7))
+            } else {
+                textField.backgroundColor = UIColor.white.withAlphaComponent(CGFloat(0.7))
+            }
+            textField.placeholder = "Empty!"
             randomButton.isHidden = true
         } else {
             textField.backgroundColor = UIColor.clear

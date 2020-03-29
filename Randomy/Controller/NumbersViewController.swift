@@ -26,8 +26,8 @@ class NumbersViewController: UIViewController {
         
         randomLabel.text = "0"
         randomLabel.adjustsFontSizeToFitWidth = true
-        minTextField.text = "0.0"
-        maxTextField.text = "10.0"
+        minTextField.text = "0"
+        maxTextField.text = "10"
         
         keyboardSettings()
     }
@@ -38,15 +38,12 @@ class NumbersViewController: UIViewController {
         Gradient.shared.initGradient(for: view)
     }
     
-    @IBAction func randomButton(_ sender: UIButton) {
-        self.view.layer.opacity = 0.7
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         makeRandom()
-        
-        UIView.animate(withDuration: 1.0) {
-            Gradient.shared.initGradient(for: self.view)
-            self.view.layer.opacity = 1.0
-            self.view.layer.setNeedsDisplay()
-        }
+    }
+    
+    @IBAction func randomButton(_ sender: UIButton) {
+        makeRandom()
     }
     
     func makeRandom() {
@@ -70,6 +67,14 @@ class NumbersViewController: UIViewController {
                 self.formatLabel(from: 0.0, to: 0.8, duration: 1.0)
             }
             lastRandom = randomLabel.text!
+        }
+        
+        self.view.layer.opacity = 0.7
+        
+        UIView.animate(withDuration: 1.0) {
+            Gradient.shared.initGradient(for: self.view)
+            self.view.layer.opacity = 1.0
+            self.view.layer.setNeedsDisplay()
         }
 
     }

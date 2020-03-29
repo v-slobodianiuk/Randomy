@@ -9,5 +9,5 @@
 import Foundation
 
 struct DataModel: Codable {
-    var text: String = ""
+    var str: String = ""
 }

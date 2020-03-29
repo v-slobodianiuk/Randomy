@@ -34,12 +34,19 @@ class ListRandomViewController: UIViewController {
         randomNameLabel.text = arrayModel.array.randomElement()
     }
     
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        makeRandom()
+    }
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func RandomNameButton(_ sender: UIButton) {
+        makeRandom()
+    }
+    
+    func makeRandom() {
         Random.shared.getNewValue(repeats: 5, timeInterval: 0.1) {
             self.randomNameLabel.alpha = 0.5
             UIView.animate(withDuration: 0.5) {

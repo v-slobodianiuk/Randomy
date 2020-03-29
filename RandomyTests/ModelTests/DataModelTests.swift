@@ -17,7 +17,7 @@ class DataModelTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         dataModelTest = DataModel()
-        dataModelTest?.text = "Baz"
+        dataModelTest?.str = "Baz"
     }
 
     override func tearDownWithError() throws {
@@ -31,7 +31,7 @@ class DataModelTests: XCTestCase {
     }
     
     func testDataModel() {
-        XCTAssertEqual(dataModelTest?.text, "Baz")
+        XCTAssertEqual(dataModelTest?.str, "Baz")
     }
     
 //    func testExample() throws {

@@ -34,7 +34,7 @@ class QueryModelTests: XCTestCase {
         mockTextView = UITextView()
         mockTextView?.text = "Baz Bar"
         guard let mockTextViewText = mockTextView?.text else { return }
-        mockItem?.text = mockTextViewText
+        mockItem?.str = mockTextViewText
         guard let mockItemText = mockItem else { return }
         queryModelTest?.array = []
         queryModelTest?.array.append(mockItemText)
@@ -62,18 +62,18 @@ class QueryModelTests: XCTestCase {
     }
 
     func testDataModelArray() {
-        XCTAssertEqual(queryModelTest!.array[0].text, "Baz Bar")
+        XCTAssertEqual(queryModelTest!.array[0].str, "Baz Bar")
     }
 
     func testSaveData() {
         queryModelTest?.saveItems(url: path)
         plistReader()
-        XCTAssertEqual(dictArray![0]["text"]!, "Baz Bar")
+        XCTAssertEqual(dictArray![0]["str"]!, "Baz Bar")
     }
     
     func testLoadData() {
         queryModelTest?.array = []
         queryModelTest?.loadItems(url: path)
-        XCTAssertEqual(queryModelTest!.array[0].text, "Baz Bar")
+        XCTAssertEqual(queryModelTest!.array[0].str, "Baz Bar")
     }
 }

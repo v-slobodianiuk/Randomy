@@ -20,6 +20,8 @@ struct Query {
     
     private static let dataFilePAth = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("list_of_words.plist")
     
+    
+    
     func saveItems(url: URL? = Query.dataFilePAth) {
         let encoder = PropertyListEncoder()
         do {

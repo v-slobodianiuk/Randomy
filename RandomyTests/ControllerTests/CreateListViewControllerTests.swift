@@ -59,7 +59,7 @@ class CreateListViewControllerTests: XCTestCase {
         createListVC.saveButton(createListVC.saveButton)
         
         XCTAssertEqual(createListVC.textView.text, "Baz, Bar")
-        XCTAssertEqual(Query.shared.array[0].text, "Baz, Bar")
+        XCTAssertEqual(Query.shared.array[0].str, "Baz, Bar")
     }
 
 }

@@ -39,7 +39,7 @@ class CreateListViewController: UIViewController {
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
 
         var newItem = DataModel()
-        newItem.text = textView.text
+        newItem.str = textView.text
         Query.shared.array.append(newItem)
         Query.shared.saveItems()
         

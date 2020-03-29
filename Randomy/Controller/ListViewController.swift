@@ -40,7 +40,7 @@ class ListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? ListRandomViewController {
-            destinationVC.words = Query.shared.array[currentRow!].text
+            destinationVC.words = Query.shared.array[currentRow!].str
         }
         
         if let destinationVC = segue.destination as? CreateListViewController {
@@ -58,7 +58,7 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath)
         
-        cell.textLabel?.text = Query.shared.array[indexPath.row].text
+        cell.textLabel?.text = Query.shared.array[indexPath.row].str
         cell.textLabel?.numberOfLines = 0
         
         return cell

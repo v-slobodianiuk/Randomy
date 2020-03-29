@@ -18,7 +18,7 @@ class ArrayModelTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         mockArrayModel = ArrayModel()
-        mockString = "Baz, Bar, Baz,Bar,  Baz  ,  Bar"
+        mockString = "Baz, Bar, Baz Bar,  Baz  , 125, #$%!,"
     }
 
     override func tearDownWithError() throws {
@@ -29,7 +29,10 @@ class ArrayModelTests: XCTestCase {
     
     func testConvertToArray() {
         mockArrayModel?.convertToArray(mockString)
-        XCTAssertEqual(mockArrayModel!.array.count, 6)
+        
+        XCTAssertFalse(mockArrayModel!.array.isEmpty)
+        XCTAssertEqual(mockArrayModel!.array.count, 5)
+        XCTAssertEqual(mockArrayModel!.array, ["Baz", " Bar", " Baz Bar", "  Baz  ", " 125"])
     }
 
 }

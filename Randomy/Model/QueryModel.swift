@@ -21,7 +21,7 @@ struct Query {
     private static let dataFilePAth = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("list_of_words.plist")
     
     
-    
+    // MARK: Save to plist
     func saveItems(url: URL? = Query.dataFilePAth) {
         let encoder = PropertyListEncoder()
         do {
@@ -32,6 +32,7 @@ struct Query {
         }
     }
     
+    // MARK: Load from plist
     mutating func loadItems(url: URL? = Query.dataFilePAth) {
         
         if let data = try? Data(contentsOf: url!) {

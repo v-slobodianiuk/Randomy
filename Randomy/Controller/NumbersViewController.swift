@@ -25,9 +25,9 @@ class NumbersViewController: UIViewController {
         maxTextField.delegate = self
         
         randomLabel.text = "0"
-        randomLabel.adjustsFontSizeToFitWidth = true
         minTextField.text = "0"
         maxTextField.text = "10"
+        randomLabel.adjustsFontSizeToFitWidth = true
         
         keyboardSettings()
     }
@@ -35,9 +35,12 @@ class NumbersViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        randomLabel.alpha = 0.7
+        
         Gradient.shared.initGradient(for: view)
     }
     
+    // MARK: Make random by shake
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         makeRandom()
     }
@@ -46,6 +49,7 @@ class NumbersViewController: UIViewController {
         makeRandom()
     }
     
+    // MARK: Generate random value (repeated and not repeated)
     func makeRandom() {
         if !repeatSwitch.isOn {
             
@@ -54,7 +58,7 @@ class NumbersViewController: UIViewController {
             let aditionalTime = Double(repeats) * interval
             
             Random.shared.getNewValue(repeats: repeats, timeInterval: interval) {
-                self.formatLabel(from: 0.5, to: 0.8, duration: 0.5)
+                self.formatLabel(from: 0.5, to: 0.7, duration: 0.5)
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + aditionalTime) {
@@ -64,7 +68,7 @@ class NumbersViewController: UIViewController {
         
         if repeatSwitch.isOn {
             while (randomLabel.text! == lastRandom) {
-                self.formatLabel(from: 0.0, to: 0.8, duration: 1.0)
+                self.formatLabel(from: 0.0, to: 0.7, duration: 1.0)
             }
             lastRandom = randomLabel.text!
         }
@@ -79,11 +83,16 @@ class NumbersViewController: UIViewController {
 
     }
     
+    // MARK: Prepare label for random
     func formatLabel(from initial: CGFloat, to final: CGFloat, duration: Double) {
-        let min = Double(minTextField.text!)!
-        let max = Double(maxTextField.text!)!
+
+        guard var min = Double(minTextField.text!.replacingOccurrences(of: ",", with: ".")) else { return }
+        guard var max = Double(maxTextField.text!.replacingOccurrences(of: ",", with: ".")) else { return }
         
-        guard max > min else { return }
+        if max < min {
+            swapTwoValues(&min, &max)
+            swapTwoValues(&minTextField.text, &maxTextField.text)
+        }
         
         self.randomLabel.alpha = initial
         let randomDouble = Double.random(in: min...max)
@@ -97,12 +106,20 @@ class NumbersViewController: UIViewController {
         }
     }
     
+    // MARK: Swap two values method
+    func swapTwoValues<T>(_ firstValue: inout T, _ secondValue: inout T) {
+        let temp = firstValue
+        firstValue = secondValue
+        secondValue = temp
+    }
+    
+    // MARK: Move view frame by y for editing text fields when keyboar will apear
     func keyboardSettings() {
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
         
-        // MARK: Change View frame y position bt default when we call Keyboard
+        // MARK: Change View frame y position by default when we call Keyboard
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { (Notification) in
             
             // if keyboard size is not available for some reason, dont do anything
@@ -111,15 +128,17 @@ class NumbersViewController: UIViewController {
             self.view.frame.origin.y = 0 - keyboardSize.height / 2
         }
         
-        // MARK: Set View frame y position bt default
+        // MARK: Set View frame y position by default
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { _ in
             self.view.frame.origin.y = 0
         }
     }
 }
 
+// MARK: - UITextFieldDelegate
 extension NumbersViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
+        // MARK: Check if text field is empty
         if textField.text == "" {
             textField.backgroundColor = UIColor.systemBackground.withAlphaComponent(CGFloat(0.7))
             textField.placeholder = "Input number"

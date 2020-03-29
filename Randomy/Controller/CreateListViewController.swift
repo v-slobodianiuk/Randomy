@@ -20,10 +20,12 @@ class CreateListViewController: UIViewController {
         
         textView.delegate = self
         
+        // MARK: Placeholder for UITextView
         textView.text = "Enter the words separated by commas.\nFor example: Tom, John, Donna, Mike"
         
         Query.shared.loadItems()
         
+        // MARK: Hide keyboard by touch outside the UITextView
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
     }
@@ -38,11 +40,13 @@ class CreateListViewController: UIViewController {
     
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
 
+        // MARK: Save new data
         var newItem = DataModel()
         newItem.str = textView.text
         Query.shared.array.append(newItem)
         Query.shared.saveItems()
         
+        // MARK: Reload tableView in ListViewController
         delegate?.reloadItems()
         
         dismiss(animated: true, completion: nil)
@@ -55,6 +59,7 @@ class CreateListViewController: UIViewController {
 
 extension CreateListViewController: UITextViewDelegate {
     
+    // MARK: Hide keyboard by return button
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
@@ -64,6 +69,7 @@ extension CreateListViewController: UITextViewDelegate {
         return true
     }
     
+    // MARK: Clean UITextView when ShouldBeginEditing
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         textView.text = ""
         textView.alpha = 1.0

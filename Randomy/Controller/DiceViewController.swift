@@ -23,6 +23,7 @@ class DiceViewController: UIViewController {
         stepper.value = 2.0
         stepperLabel.text = String(format: "%.0f", stepper.value)
         
+        // MARK: Add dice images to array
         (1...6).forEach { (img) in
             dicesArray.append(UIImage(named: "\(img)"))
         }
@@ -30,10 +31,11 @@ class DiceViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        stepperLabel.alpha = 0.7
         Gradient.shared.initGradient(for: view)
     }
     
+    // MARK: Make random by shake
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         makeRandom()
     }
@@ -42,6 +44,7 @@ class DiceViewController: UIViewController {
         makeRandom()
     }
     
+    // MARK: Change dice count by stepper
     @IBAction func stepper(_ sender: UIStepper) {
         stepperLabel.text = String(format: "%.0f", sender.value)
 
@@ -53,6 +56,8 @@ class DiceViewController: UIViewController {
         }
     }
     
+    
+    // MARK: Randomize dices method
     func makeRandom() {
         firstDiceImageView.alpha = 0.0
         secondDiceImageView.alpha = 0.0

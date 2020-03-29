@@ -31,9 +31,11 @@ class ListRandomViewController: UIViewController {
         super.viewWillAppear(animated)
         
         Gradient.shared.initGradient(for: view)
+        randomNameLabel.alpha = 0.7
         randomNameLabel.text = arrayModel.array.randomElement()
     }
     
+    // MARK: Make random by shake
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         makeRandom()
     }
@@ -48,10 +50,10 @@ class ListRandomViewController: UIViewController {
     
     func makeRandom() {
         Random.shared.getNewValue(repeats: 5, timeInterval: 0.1) {
-            self.randomNameLabel.alpha = 0.5
+            self.randomNameLabel.alpha = 0.3
             UIView.animate(withDuration: 0.5) {
                 self.randomNameLabel.text = self.arrayModel.array.randomElement()
-                self.randomNameLabel.alpha = 1.0
+                self.randomNameLabel.alpha = 0.7
             }
         }
         

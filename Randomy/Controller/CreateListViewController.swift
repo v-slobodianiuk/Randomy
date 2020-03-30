@@ -14,6 +14,7 @@ class CreateListViewController: UIViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var delegate: QueryDataDelegate?
+    var placeholder = "Enter the words separated by commas.\nFor example: Tom, John, Donna, Mike"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ class CreateListViewController: UIViewController {
         textView.delegate = self
         
         // MARK: Placeholder for UITextView
-        textView.text = "Enter the words separated by commas.\nFor example: Tom, John, Donna, Mike"
+        textView.text = placeholder
         
         Query.shared.loadItems()
         
@@ -39,6 +40,8 @@ class CreateListViewController: UIViewController {
     }
     
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
+        
+        guard textView.text != placeholder else { return }
 
         // MARK: Save new data
         var newItem = DataModel()

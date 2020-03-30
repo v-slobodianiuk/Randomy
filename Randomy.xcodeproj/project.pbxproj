@@ -24,9 +24,9 @@
 		D55AD673242AC38D001EECA4 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55AD672242AC38D001EECA4 /* ListViewController.swift */; };
 		D55AD675242AEBD9001EECA4 /* QueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55AD674242AEBD9001EECA4 /* QueryModel.swift */; };
 		D55AD677242AF77E001EECA4 /* ArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55AD676242AF77E001EECA4 /* ArrayModel.swift */; };
-		D55AD679242AFA8A001EECA4 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55AD678242AFA8A001EECA4 /* Random.swift */; };
 		D57FD7DB242CBC59006FEFE2 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57FD7DA242CBC59006FEFE2 /* Buttons.swift */; };
 		D592E6C22428EEF000C7A299 /* DiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D592E6C12428EEF000C7A299 /* DiceViewController.swift */; };
+		D5E9F3FF24328F700055325E /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E9F3FE24328F700055325E /* Random.swift */; };
 		D5EEBC102428E3CE001C49A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEBC0F2428E3CE001C49A7 /* AppDelegate.swift */; };
 		D5EEBC122428E3CE001C49A7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEBC112428E3CE001C49A7 /* SceneDelegate.swift */; };
 		D5EEBC142428E3CE001C49A7 /* NumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEBC132428E3CE001C49A7 /* NumbersViewController.swift */; };
@@ -64,9 +64,9 @@
 		D55AD672242AC38D001EECA4 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		D55AD674242AEBD9001EECA4 /* QueryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryModel.swift; sourceTree = "<group>"; };
 		D55AD676242AF77E001EECA4 /* ArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayModel.swift; sourceTree = "<group>"; };
-		D55AD678242AFA8A001EECA4 /* Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		D57FD7DA242CBC59006FEFE2 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		D592E6C12428EEF000C7A299 /* DiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceViewController.swift; sourceTree = "<group>"; };
+		D5E9F3FE24328F700055325E /* Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		D5EEBC0C2428E3CE001C49A7 /* Randomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Randomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5EEBC0F2428E3CE001C49A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5EEBC112428E3CE001C49A7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 				D538B61C242A236F007E44EA /* DataModel.swift */,
 				D55AD674242AEBD9001EECA4 /* QueryModel.swift */,
 				D55AD676242AF77E001EECA4 /* ArrayModel.swift */,
-				D55AD678242AFA8A001EECA4 /* Random.swift */,
+				D5E9F3FE24328F700055325E /* Random.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -310,6 +310,7 @@
 			files = (
 				D55AD675242AEBD9001EECA4 /* QueryModel.swift in Sources */,
 				D55AD677242AF77E001EECA4 /* ArrayModel.swift in Sources */,
+				D5E9F3FF24328F700055325E /* Random.swift in Sources */,
 				D538B6192429A6CE007E44EA /* CreateListViewController.swift in Sources */,
 				D57FD7DB242CBC59006FEFE2 /* Buttons.swift in Sources */,
 				D54883B1242D337F00024E16 /* GradientView.swift in Sources */,
@@ -320,7 +321,6 @@
 				D55AD673242AC38D001EECA4 /* ListViewController.swift in Sources */,
 				D538B61D242A236F007E44EA /* DataModel.swift in Sources */,
 				D5EEBC122428E3CE001C49A7 /* SceneDelegate.swift in Sources */,
-				D55AD679242AFA8A001EECA4 /* Random.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -44,7 +44,7 @@ class CreateListViewControllerTests: XCTestCase {
     
     func testTextViewShouldBeginEditing() {
         
-        createListVC.textViewShouldBeginEditing(createListVC.textView)
+        _ = createListVC.textViewShouldBeginEditing(createListVC.textView)
         
         XCTAssertEqual(createListVC.textView.text, "")
         XCTAssertEqual(createListVC.textView.alpha, 1.0)

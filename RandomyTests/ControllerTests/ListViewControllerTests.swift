@@ -13,6 +13,7 @@ class ListViewControllerTests: XCTestCase {
     
     var listVC: ListViewController!
     var targetVC: ListRandomViewController!
+    var mockItem: DataModel!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -25,6 +26,10 @@ class ListViewControllerTests: XCTestCase {
         
         _ = listVC.view
         _ = targetVC.view
+        
+        mockItem = DataModel()
+        mockItem.str = "Baz Bar"
+        Query.shared.array.append(mockItem)
     }
 
     override func tearDownWithError() throws {
@@ -32,6 +37,7 @@ class ListViewControllerTests: XCTestCase {
         
         listVC = nil
         targetVC = nil
+        mockItem = nil
     }
     
     func testPrepare() {

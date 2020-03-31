@@ -17,6 +17,8 @@ class QueryModelTests: XCTestCase {
     var nsDictionary: NSDictionary?
     var path: URL?
     var dictArray: [[String:String]]?
+    var queue = DispatchQueue(label: "Test queue")
+    var dispatchGroup = DispatchGroup()
     
     func plistReader() {
         nsDictionary = NSDictionary(contentsOf: path!)
@@ -29,6 +31,7 @@ class QueryModelTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("xct.plist")
+        
         queryModelTest = Query.shared
         mockItem = DataModel()
         mockTextView = UITextView()
@@ -43,12 +46,9 @@ class QueryModelTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         
-        queryModelTest = nil
         mockItem = nil
         mockTextView = nil
         nsDictionary = nil
-        path = nil
-        dictArray = nil
     }
     
     func testModuleIsNotNil() {
@@ -66,14 +66,18 @@ class QueryModelTests: XCTestCase {
     }
 
     func testSaveData() {
-        queryModelTest?.saveItems(url: path)
-        plistReader()
-        XCTAssertEqual(dictArray![0]["str"]!, "Baz Bar")
+        queue.async(group: dispatchGroup) {
+            self.queryModelTest?.saveItems(url: self.path)
+            self.plistReader()
+            XCTAssertEqual(self.dictArray![0]["str"]!, "Baz Bar")
+        }
     }
     
     func testLoadData() {
-        queryModelTest?.array = []
-        queryModelTest?.loadItems(url: path)
-        XCTAssertEqual(queryModelTest!.array[0].str, "Baz Bar")
+        dispatchGroup.notify(queue: .main) {
+            self.queryModelTest?.array = []
+            self.queryModelTest?.loadItems(url: self.path)
+            XCTAssertEqual(self.queryModelTest!.array[0].str, "Baz Bar")
+        }
     }
 }

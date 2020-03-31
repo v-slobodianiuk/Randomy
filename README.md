@@ -1,5 +1,9 @@
 ![iOS](https://img.shields.io/badge/iOS-13%20-blue)
 ![Swift](https://img.shields.io/badge/Swift-5-orange?logo=Swift&logoColor=white)
+[![Build Status](https://travis-ci.com/v-slobodianiuk/Randomy.svg?branch=master)](https://travis-ci.com/v-slobodianiuk/Randomy)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=v-slobodianiuk_Randomy&metric=alert_status)](https://sonarcloud.io/dashboard?id=v-slobodianiuk_Randomy)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=v-slobodianiuk_Randomy&metric=bugs)](https://sonarcloud.io/dashboard?id=v-slobodianiuk_Randomy)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=v-slobodianiuk_Randomy&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=v-slobodianiuk_Randomy)
 # Randomy
 Generate random value
 

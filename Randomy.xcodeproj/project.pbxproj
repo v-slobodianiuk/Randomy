@@ -33,7 +33,6 @@
 		D5EEBC172428E3CE001C49A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5EEBC152428E3CE001C49A7 /* Main.storyboard */; };
 		D5EEBC192428E3D0001C49A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5EEBC182428E3D0001C49A7 /* Assets.xcassets */; };
 		D5EEBC1C2428E3D0001C49A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5EEBC1A2428E3D0001C49A7 /* LaunchScreen.storyboard */; };
-		D5EEBC272428E3D0001C49A7 /* RandomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEBC262428E3D0001C49A7 /* RandomyTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +75,6 @@
 		D5EEBC1B2428E3D0001C49A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D5EEBC1D2428E3D0001C49A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5EEBC222428E3D0001C49A7 /* RandomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RandomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D5EEBC262428E3D0001C49A7 /* RandomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomyTests.swift; sourceTree = "<group>"; };
 		D5EEBC282428E3D0001C49A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,7 +199,6 @@
 				D555CCA0242D603F007377F1 /* ModelTests */,
 				D555CCB0242DA503007377F1 /* ControllerTests */,
 				D555CCA9242D9932007377F1 /* ViewTests */,
-				D5EEBC262428E3D0001C49A7 /* RandomyTests.swift */,
 				D5EEBC282428E3D0001C49A7 /* Info.plist */,
 			);
 			path = RandomyTests;
@@ -328,7 +325,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5EEBC272428E3D0001C49A7 /* RandomyTests.swift in Sources */,
 				D555CC9F242D603B007377F1 /* DataModelTests.swift in Sources */,
 				D555CCA4242D8D8C007377F1 /* ArrayModelTests.swift in Sources */,
 				D555CCAB242D996D007377F1 /* GradientViewTests.swift in Sources */,

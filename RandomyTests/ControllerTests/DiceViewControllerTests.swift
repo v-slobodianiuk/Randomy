@@ -13,15 +13,14 @@ class DiceViewControllerTests: XCTestCase {
     
     var diceVC: DiceViewController!
 
-    override func setUpWithError() throws {
+    override func setUp() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "DiceVC") as! DiceViewController
         diceVC = vc
         diceVC.loadViewIfNeeded()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
         
         diceVC = nil
     }

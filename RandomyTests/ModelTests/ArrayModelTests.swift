@@ -14,15 +14,14 @@ class ArrayModelTests: XCTestCase {
     var mockArrayModel: ArrayModel?
     var mockString: String?
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
         
         mockArrayModel = ArrayModel()
         mockString = "Baz, Bar, Baz Bar,  Baz  , 125, #$%!,"
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+
         mockArrayModel = nil
         mockString = nil
     }

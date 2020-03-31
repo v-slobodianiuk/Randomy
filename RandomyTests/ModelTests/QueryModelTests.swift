@@ -27,8 +27,7 @@ class QueryModelTests: XCTestCase {
         dictArray = plist as? [[String:String]]
     }
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
         
         path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("xct.plist")
         
@@ -43,8 +42,7 @@ class QueryModelTests: XCTestCase {
         queryModelTest?.array.append(mockItemText)
     }
     
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
         
         mockItem = nil
         mockTextView = nil

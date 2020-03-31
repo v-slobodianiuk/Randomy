@@ -15,8 +15,7 @@ class ListViewControllerTests: XCTestCase {
     var targetVC: ListRandomViewController!
     var mockItem: DataModel!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "ListVC") as! ListViewController
@@ -32,9 +31,8 @@ class ListViewControllerTests: XCTestCase {
         Query.shared.array.append(mockItem)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        
+    override func tearDown() {
+
         listVC = nil
         targetVC = nil
         mockItem = nil
@@ -49,11 +47,6 @@ class ListViewControllerTests: XCTestCase {
         listVC.prepare(for: segue, sender: nil)
 
         XCTAssertNotNil(targetVC.words)
-        
-        
-//        guard let inputViewController = listVC.presentedViewController as? ListRandomViewController else {
-//            return XCTFail()
-//        }
     }
     
     func testSelectRow() {

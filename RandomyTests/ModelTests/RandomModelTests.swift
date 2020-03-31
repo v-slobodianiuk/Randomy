@@ -20,8 +20,7 @@ class RandomModelTests: XCTestCase {
     var mockString: String?
     var mockTimer: Double?
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
         
         mockRandomModel = Random.shared
         mockRepeats = 5
@@ -34,8 +33,7 @@ class RandomModelTests: XCTestCase {
         }
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
         
         mockRandomModel = nil
         mockRepeats = nil
@@ -63,11 +61,5 @@ class RandomModelTests: XCTestCase {
             XCTAssertEqual(self.mockString, "Baz Bar")
             XCTAssertEqual(self.mockLabel!.text, "1 - Baz Bar")
         }
-        
-        
-//        DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
-//            print("Label: \(self.mockLabel?.text)")
-//        }
     }
-
 }

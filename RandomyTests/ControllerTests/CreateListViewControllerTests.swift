@@ -14,7 +14,7 @@ class CreateListViewControllerTests: XCTestCase {
     var createListVC: CreateListViewController!
     var listVC: ListViewController!
 
-    override func setUpWithError() throws {
+    override func setUp() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "createItemStoryboard") as! CreateListViewController
         let targetVC = storyboard.instantiateViewController(withIdentifier: "ListVC") as! ListViewController
@@ -25,8 +25,7 @@ class CreateListViewControllerTests: XCTestCase {
         listVC.loadViewIfNeeded()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
         
         createListVC = nil
         listVC = nil

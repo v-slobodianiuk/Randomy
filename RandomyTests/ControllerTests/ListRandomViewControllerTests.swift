@@ -13,7 +13,7 @@ class ListRandomViewControllerTests: XCTestCase {
     
     var listRandomVC: ListRandomViewController!
 
-    override func setUpWithError() throws {
+    override func setUp() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "ListRandomVC") as! ListRandomViewController
@@ -21,7 +21,7 @@ class ListRandomViewControllerTests: XCTestCase {
         listRandomVC.loadViewIfNeeded()
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() {
         
         listRandomVC = nil
     }
@@ -55,7 +55,5 @@ class ListRandomViewControllerTests: XCTestCase {
         listRandomVC.randomNameButton.sendActions(for: .touchUpInside)
         
         XCTAssertNotEqual(firstSublayer, listRandomVC.view.layer.sublayers![0])
-        
-
     }
 }
